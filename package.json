@@ -5,8 +5,15 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:href": "ng build --base-href ./",
+    "build:github": "npm run build:href && npm run reorder:dist && npm run delete:docs && npm run copy:dist",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "reorder:dist": "npm run copy:browsercontent && npm run delete:browser",
+    "copy:browsercontent": "copyfiles dist/gifs-app/browser/* dist/gifs-app -f",
+    "delete:browser": "del-cli dist/gifs-app/browser",
+    "copy:dist": "copyfiles dist/gifs-app/* ./docs -f",
+    "delete:docs": "del-cli docs"
   },
   "private": true,
   "dependencies": {
@@ -18,6 +25,8 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
+    "copyfiles": "^2.4.1",
+    "del-cli": "^5.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
