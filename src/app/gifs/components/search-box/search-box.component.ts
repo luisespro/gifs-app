@@ -21,8 +21,6 @@ export class SearchBoxComponent {
   constructor(private gifsService: GifsService) {}
 
   searchTag() {
-    if (this.tagInput.nativeElement.value.length === 0) return;
-
     const newTag = this.tagInput.nativeElement.value.trim();
 
     this.gifsService.searchTag(newTag);
